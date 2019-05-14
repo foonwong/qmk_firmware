@@ -1,7 +1,7 @@
 # Quantum Mechanical Keyboard Firmware
 
 
-## Official Website
+## Flashing command 
 
 ```
 util/docker_build.sh dz60:[mykeymap]
