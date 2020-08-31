@@ -36,22 +36,27 @@ void matrix_scan_user(void) {
 
 void keyboard_post_init_user(void) {
   // Call the post init code.
-  rgblight_enable_noeeprom(); // enables Rgb, without saving settings
+    rgblight_sethsv(HSV_MAGENTA); // sets the color to teal/cyan without saving
+    rgblight_mode(RGBLIGHT_MODE_BREATHING + 5); // sets mode to Fast breathing without saving
+    rgblight_disable(); 
 };
 
 
 uint32_t layer_state_set_user(uint32_t state) {
     switch (biton32(state)) {
     case 2:
-        rgblight_mode_noeeprom(1); // sets mode to Fast breathing without saving
-        rgblight_sethsv_noeeprom(HSV_CHARTREUSE); // sets the color to teal/cyan without saving
+        backlight_enable(); 
+//        rgblight_enable(); 
+//        rgblight_mode(1); // sets mode to Fast breathing without saving
+//        rgblight_sethsv(HSV_PINK); // sets the color to teal/cyan without saving
         break;
     case 1:
-        rgblight_mode_noeeprom(1); // sets mode to Fast breathing without saving
-        rgblight_sethsv_noeeprom(HSV_CYAN); // sets the color to teal/cyan without saving
+        backlight_disable();
+        rgblight_enable(); 
         break;
     default: //  for any other layers, or the default layer
-        rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 5); // sets mode to Fast breathing without saving
+        backlight_disable();
+        rgblight_disable(); 
         break;
     }
   return state;
